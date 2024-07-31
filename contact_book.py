@@ -165,9 +165,10 @@ class AddressBook(UserDict):
         def prepare_user_list(user_data):
             prepared_list = []
             for key, value in user_data.items():
-                if value is not None:
+                print(value)
+                if (birthday := value.birthday) is not None:
                     prepared_list.append({"name": key,
-                                          "birthday": string_to_date(value.birthday.value)})
+                                          "birthday": string_to_date(birthday.value)})
             return prepared_list
 
         # Пошук наступної дати коли настане заданий день тижня
@@ -187,7 +188,7 @@ class AddressBook(UserDict):
         today = date.today()
 
         users = prepare_user_list(self.data)
-
+        print(123)
         # Зміна року на той, що зараз
         for user in users:
             birthday_this_year = user["birthday"].replace(year=today.year)
